@@ -32,6 +32,25 @@ Screen.fill(WHITE)
 boardImage = pygame.image.load('boardphoto.jpg')
 Screen.blit(boardImage, (0,0))
 
+
+def who_wins(color_of_list, new_position):
+    "color_of_list 代表了谁在下子（那个颜色） new_position 代表了新下的那个子的位置 我们需要对比新\
+    下的子的位置和所有原来在list中的位置 看看有没有五个连续的 如果有五个连续的则判定胜利"
+    a=0
+    b=0
+    for i in range(5):
+        while (new_position[0]+25*i,new_position[1]):
+            a+=1
+        while (new_position[0] -25*i,new_position[1]):
+            a+=1
+        if a >= 6:
+            if (n-1)%2 == 0:
+                return (" red win the game")
+            if (n-1)%2 ==1:
+                return(" green win the game")
+            
+            
+
 #pygame.draw.line(Screen, Color, Start_position, End_position, Width)
 #Draw the board
 for i in range (50):
