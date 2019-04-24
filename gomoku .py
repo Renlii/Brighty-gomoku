@@ -74,7 +74,7 @@ while not time_to_quit:
                     pygame.draw.circle(Screen, BLACK, intersection_position, 10, 0)
                     all_black.append(intersection_position)
                     empty_intersection.remove(intersection_position)
-                    pygame.display.update()
+                    
                 elif n%2 == 1:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,10, 0)
