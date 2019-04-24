@@ -74,11 +74,13 @@ while not time_to_quit:
                     pygame.draw.circle(Screen, RED, intersection_position, 7, 0)
                     all_red.append(intersection_position)
                     empty_intersection.remove(intersection_position)
+                    pygame.display.update()
                 elif n%2 == 1:
                     n+=1
                     pygame.draw.circle(Screen, GREEN, intersection_position, 7, 0)
                     all_green.append(intersection_position)
                     empty_intersection.remove(intersection_position)
+                    pygame.display.update()
     
     #获取鼠标位置 get mouse position          
     x, y = pygame.mouse.get_pos()
