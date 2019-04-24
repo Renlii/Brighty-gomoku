@@ -52,6 +52,10 @@ for i in range(50):
 
 #print(empty_intersection)
 
+n=0 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
+all_red=[]
+all_green=[]
+
 time_to_quit = False
 while not time_to_quit:
     for new_event in pygame.event.get():
@@ -65,8 +69,16 @@ while not time_to_quit:
             intersection_position = [pos_position[i] * 25 for i in range(len(pos_position))]
             #print(intersection_position)
             if intersection_position in empty_intersection:
-                pygame.draw.circle(Screen, RED, intersection_position, 7, 0)
-    pygame.display.update()
+                if n%2 == 0:
+                    n+=1
+                    pygame.draw.circle(Screen, RED, intersection_position, 7, 0)
+                    all_red.append(intersection_position)
+                    empty_intersection.remove(intersection_position)
+                elif n%2 == 1:
+                    n+=1
+                    pygame.draw.circle(Screen, GREEN, intersection_position, 7, 0)
+                    all_green.append(intersection_position)
+                    empty_intersection.remove(intersection_position)
     
     #获取鼠标位置 get mouse position          
     x, y = pygame.mouse.get_pos()
