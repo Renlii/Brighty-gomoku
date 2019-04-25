@@ -118,3 +118,7 @@ second_x = p1[px+1]
 first_y = p2[py-1]
 second-y = p2[py+1]
 """
+#time
+#rule
+#text display
+# AI (deep learning? or simple AI branch
