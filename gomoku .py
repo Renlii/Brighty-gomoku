@@ -31,23 +31,74 @@ boardImage = pygame.image.load('boardphoto.jpg')
 Screen.blit(boardImage, (0,0))
 
 
+font = pygame.font.Font('freesansbold.ttf', 32)
+text = font.render('White win!', True, GREEN, BLUE)
+textRect = text.get_rect()
+textRect.center = (1440 // 2, 960 // 2)
+
+
 def who_wins(color_of_list, new_position):
     "color_of_list 代表了谁在下子（那个颜色） new_position 代表了新下的那个子的位置 我们需要对比新\
     下的子的位置和所有原来在list中的位置 看看有没有五个连续的 如果有五个连续的则判定胜利"
+    global red_1
+    global green_1
+    global display_1
     a=0
-    b=0
+    red_1=False
+    green_1=False
+    display_1=a
+    # 横向判断
     for i in range(5):
-        while (new_position[0]+25*i,new_position[1]):
+        while (int(new_position[0])+25*i,int(new_position[1])) in color_of_list:
             a+=1
-        while (new_position[0] -25*i,new_position[1]):
+        while (int(new_position[0]) -25*i,int(new_position[1])) in color_of_list:
             a+=1
         if a >= 6:
             if (n-1)%2 == 0:
-                return (" red win the game")
+                return (red_1==True)
             if (n-1)%2 ==1:
-                return(" green win the game")
-            
-            
+                return(green_1==True)
+
+
+
+    # 纵向判断
+    a=0
+    for i in range(5):
+        while (int(new_position[0]), int(new_position[1])+25*i) in color_of_list:
+            a+=1
+        while (int(new_position[0]), int(new_position[1])-25*i) in color_of_list:
+            a+=1
+        if a>= 6:
+            if (n-1)%2 == 0:
+                return (red_1==True)
+            if (n-1)%2 == 1:
+                return(green_1==True)
+    # 左上右下
+    a=0
+    for i in range(5):
+        while (int(new_position[0])+25*i, int(new_position[1])-25*i) in color_of_list:
+            a+=1
+        while (int(new_position[0])-25*i, int(new_position[1])+25*i) in color_of_list:
+            a+=1
+        if a>= 6:
+            if (n-1)%2 == 0:
+                return (red_1==True)
+            if (n-1)%2 == 1:
+                return(green_1==True)
+    # 左下右上
+    a=0
+    for i in range(5):
+        while (int(new_position[0])+25*i, int(new_position[1])+25*i) in color_of_list:
+            a+=1
+        while (int(new_position[0])-25*i, int(new_position[1])+25*i) in color_of_list:
+            a+=1
+        if a>= 6:
+            if (n-1)%2 == 0:
+                return (red_1==True)
+            if (n-1)%2 == 1:
+                return(green_1==True)
+
+
 
 #pygame.draw.line(Screen, Color, Start_position, End_position, Width)
 #Draw the board
@@ -91,12 +142,16 @@ while not time_to_quit:
                     pygame.draw.circle(Screen, BLACK, intersection_position, 10, 0)
                     all_black.append(intersection_position)
                     empty_intersection.remove(intersection_position)
-                    
+                    who_wins(all_black,intersection_position)
+                    if green_1 == True:
+
+                        display_surface.blit(text, textRect) 
                 elif n%2 == 1:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,10, 0)
                     all_white.append(intersection_position)
                     empty_intersection.remove(intersection_position)
+                    who_wins(all_black,intersection_position)
                 pygame.display.update()
     
     #获取鼠标位置 get mouse position          
