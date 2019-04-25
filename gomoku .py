@@ -1,5 +1,3 @@
-from pygame import *
-
 ''' UI & deep learning & rules '''
 
 
