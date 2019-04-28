@@ -226,3 +226,26 @@ second-y = p2[py+1]
 #rule
 #text display
 # AI (deep learning? or simple AI branch
+
+
+
+
+#谁先走
+#https://docs.python.org/2/library/random.html
+#https://www.researchgate.net/publication/312325842_Move_prediction_in_Gomoku_using_deep_learning
+
+#def ResetBoard(board)
+#def NewBoard()
+#def OnBoard(x, y)
+#def ValidMoves(board, tile)  tile是已经存在的自己的棋子  othertile对方的棋子
+
+import random
+
+def WhoGoesFirst():
+    if random.randint('player', 'computer') == 'player':
+        player = 'black'
+        computer = 'white'
+    else:
+        player = 'white'
+        computer = 'black'
+
