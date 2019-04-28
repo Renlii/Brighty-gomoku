@@ -31,10 +31,16 @@ boardImage = pygame.image.load('boardphoto.jpg')
 Screen.blit(boardImage, (0,0))
 
 
+
+
+
 font = pygame.font.Font('freesansbold.ttf', 32)
-text = font.render('White win!', True, GREEN, BLUE)
-textRect = text.get_rect()
-textRect.center = (1440 // 2, 960 // 2)
+text_black = font.render('Black win!', True, GREEN, BLUE)
+text_white = font.render('White win!', True, GREEN, BLUE)
+textRect_black = text_black.get_rect()
+textRect_white = text_white.get_rect()
+textRect_black.center = (1440 // 2, 960 // 2)
+textRect_white.center = (1440 // 2, 960 // 2)
 
 
 def who_wins(color_of_list, new_position):
@@ -73,7 +79,7 @@ def who_wins(color_of_list, new_position):
 
 
     # 纵向判断
-    #a=0
+    a=0
     for i in range(1,5):
         if [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
             a+=1
@@ -92,7 +98,7 @@ def who_wins(color_of_list, new_position):
             white_1=True
             return (a)
     # 左上右下
-    #a=0
+    a=0
     for i in range(1,5):
         if [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
             a+=1
@@ -111,14 +117,14 @@ def who_wins(color_of_list, new_position):
             white_1=True
             return (a)
     # 左下右上
-    #a=0
+    a=0
     for i in range(1,5):
         if [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
             a+=1
         else:
             break
     for i in range(1,5):
-        if [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
+        if [int(new_position[0])-25*i, int(new_position[1])-25*i] in color_of_list:
             a+=1
         else:
             break
@@ -155,6 +161,9 @@ for i in range(50):
 n=1 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
 all_black=[]
 all_white=[]
+time_black_win=0
+time_white_win=0
+
 
 time_to_quit = False
 while not time_to_quit:
@@ -179,14 +188,21 @@ while not time_to_quit:
                     #print("n is",n)
                     #print("a is",display_1)
                     if black_1 == True:
-                        display_surface.blit(text, textRect)
+                        Screen.blit(text_black, textRect_black)
                         pygame.display.update()
+                        time_black_win+=1
+                        time_to_quit = True
                 elif n%2 == 0:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,10, 0)
                     all_white.append(intersection_position)
                     empty_intersection.remove(intersection_position)
                     who_wins(all_white,intersection_position)
+                    if white_1 == True:
+                        Screen.blit(text_white, textRect_white)
+                        pygame.display.update()
+                        time_white_win+=1
+                        time_to_quit = True
                 pygame.display.update()
     
     #获取鼠标位置 get mouse position          
