@@ -38,66 +38,98 @@ textRect.center = (1440 // 2, 960 // 2)
 
 
 def who_wins(color_of_list, new_position):
-    "color_of_list 代表了谁在下子（那个颜色） new_position 代表了新下的那个子的位置 我们需要对比新\
-    下的子的位置和所有原来在list中的位置 看看有没有五个连续的 如果有五个连续的则判定胜利"
-    global red_1
-    global green_1
+    """color_of_list 代表了谁在下子（那个颜色） new_position 代表了新下的那个子的位置 我们需要对比新\
+    下的子的位置和所有原来在list中的位置 看看有没有五个连续的 如果有五个连续的则判定胜利"""
+    global black_1
+    global white_1
     global display_1
     a=0
-    red_1=False
-    green_1=False
+    black_1=False
+    white_1=False
     display_1=a
     # 横向判断
-    for i in range(5):
-        while (int(new_position[0])+25*i,int(new_position[1])) in color_of_list:
+    for i in range(1,5):
+        if [int(new_position[0])+25*i,int(new_position[1])] in color_of_list:
             a+=1
-        while (int(new_position[0]) -25*i,int(new_position[1])) in color_of_list:
+            print("a+=1",a)
+        else:
+            break
+        print([int(new_position[0])+25*i,int(new_position[1])] in color_of_list)
+        print([int(new_position[0])+25*i,int(new_position[1])])
+        print("value i:",i)
+    for i in range(1,5):
+        if [int(new_position[0]) -25*i,int(new_position[1])] in color_of_list:
             a+=1
-        if a >= 6:
-            if (n-1)%2 == 0:
-                return (red_1==True)
-            if (n-1)%2 ==1:
-                return(green_1==True)
+        else:
+            break
+    if a >= 4:
+        if (n-1)%2 == 1:
+            black_1=True
+            return(a)
+        if (n-1)%2 == 0:
+            white_1=True
+            return(a)
 
 
 
     # 纵向判断
-    a=0
-    for i in range(5):
-        while (int(new_position[0]), int(new_position[1])+25*i) in color_of_list:
+    #a=0
+    for i in range(1,5):
+        if [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
             a+=1
-        while (int(new_position[0]), int(new_position[1])-25*i) in color_of_list:
+        else:
+            break
+    for i in range(1,5):
+        if [int(new_position[0]), int(new_position[1])-25*i] in color_of_list:
             a+=1
-        if a>= 6:
-            if (n-1)%2 == 0:
-                return (red_1==True)
-            if (n-1)%2 == 1:
-                return(green_1==True)
+        else:
+            break
+    if a>= 4:
+        if (n-1)%2 == 1:
+            black_1=True
+            return (a)
+        if (n-1)%2 == 0:
+            white_1=True
+            return (a)
     # 左上右下
-    a=0
-    for i in range(5):
-        while (int(new_position[0])+25*i, int(new_position[1])-25*i) in color_of_list:
+    #a=0
+    for i in range(1,5):
+        if [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
             a+=1
-        while (int(new_position[0])-25*i, int(new_position[1])+25*i) in color_of_list:
+        else:
+            break
+    for i in range(1,5):
+        if [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
             a+=1
-        if a>= 6:
-            if (n-1)%2 == 0:
-                return (red_1==True)
-            if (n-1)%2 == 1:
-                return(green_1==True)
+        else:
+            break
+    if a>= 4:
+        if (n-1)%2 == 1:
+            black_1=True
+            return (a)
+        if (n-1)%2 == 0:
+            white_1=True
+            return (a)
     # 左下右上
-    a=0
-    for i in range(5):
-        while (int(new_position[0])+25*i, int(new_position[1])+25*i) in color_of_list:
+    #a=0
+    for i in range(1,5):
+        if [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
             a+=1
-        while (int(new_position[0])-25*i, int(new_position[1])+25*i) in color_of_list:
+        else:
+            break
+    for i in range(1,5):
+        if [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
             a+=1
-        if a>= 6:
-            if (n-1)%2 == 0:
-                return (red_1==True)
-            if (n-1)%2 == 1:
-                return(green_1==True)
-
+        else:
+            break
+    if a>= 4:
+        if (n-1)%2 == 1:
+            black_1=True
+            return (a)
+        if (n-1)%2 == 0:
+            white_1=True
+            return (a)
+    print('asjgfaosiuhf',a)
 
 
 #pygame.draw.line(Screen, Color, Start_position, End_position, Width)
@@ -120,7 +152,7 @@ for i in range(50):
 
 #print(empty_intersection)
 
-n=0 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
+n=1 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
 all_black=[]
 all_white=[]
 
@@ -137,21 +169,24 @@ while not time_to_quit:
             intersection_position = [pos_position[i] * 25 for i in range(len(pos_position))]
             #print(intersection_position)
             if intersection_position in empty_intersection:
-                if n%2 == 0:
+                if n%2 == 1:
                     n+=1
                     pygame.draw.circle(Screen, BLACK, intersection_position, 10, 0)
                     all_black.append(intersection_position)
                     empty_intersection.remove(intersection_position)
                     who_wins(all_black,intersection_position)
-                    if green_1 == True:
-
-                        display_surface.blit(text, textRect) 
-                elif n%2 == 1:
+                    #print('black_1 is',black_1)
+                    #print("n is",n)
+                    #print("a is",display_1)
+                    if black_1 == True:
+                        display_surface.blit(text, textRect)
+                        pygame.display.update()
+                elif n%2 == 0:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,10, 0)
                     all_white.append(intersection_position)
                     empty_intersection.remove(intersection_position)
-                    who_wins(all_black,intersection_position)
+                    who_wins(all_white,intersection_position)
                 pygame.display.update()
     
     #获取鼠标位置 get mouse position          
