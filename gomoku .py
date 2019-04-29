@@ -1,4 +1,4 @@
-''' UI & deep learning & rules '''
+''' AI & deep learning & rules '''
 
 
 
