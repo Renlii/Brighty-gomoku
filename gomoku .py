@@ -53,20 +53,30 @@ def who_wins(color_of_list, new_position):
     black_1=False
     white_1=False
     display_1=a
-    # 横向判断
+    
     for i in range(1,5):
+        # horizontal
         if [int(new_position[0])+25*i,int(new_position[1])] in color_of_list:
             a+=1
-            print("a+=1",a)
-        else:
-            break
-        print([int(new_position[0])+25*i,int(new_position[1])] in color_of_list)
-        print([int(new_position[0])+25*i,int(new_position[1])])
-        print("value i:",i)
-    for i in range(1,5):
-        if [int(new_position[0]) -25*i,int(new_position[1])] in color_of_list:
+        elif [int(new_position[0]) -25*i,int(new_position[1])] in color_of_list:
+            a+=1
+        # vertical
+        elif [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
+            a+=1
+        elif [int(new_position[0]), int(new_position[1])-25*i] in color_of_list:
+            a+=1
+        # up left, down right
+        elif [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
+            a+=1
+        elif [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
+            a+=1
+        # up right, down left
+        elif [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
+            a+=1
+        elif [int(new_position[0])-25*i, int(new_position[1])-25*i] in color_of_list:
             a+=1
         else:
+            print("value i:",i)
             break
     if a >= 4:
         if (n-1)%2 == 1:
@@ -75,66 +85,6 @@ def who_wins(color_of_list, new_position):
         if (n-1)%2 == 0:
             white_1=True
             return(a)
-
-
-
-    # 纵向判断
-    a=0
-    for i in range(1,5):
-        if [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    for i in range(1,5):
-        if [int(new_position[0]), int(new_position[1])-25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    if a>= 4:
-        if (n-1)%2 == 1:
-            black_1=True
-            return (a)
-        if (n-1)%2 == 0:
-            white_1=True
-            return (a)
-    # 左上右下
-    a=0
-    for i in range(1,5):
-        if [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    for i in range(1,5):
-        if [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    if a>= 4:
-        if (n-1)%2 == 1:
-            black_1=True
-            return (a)
-        if (n-1)%2 == 0:
-            white_1=True
-            return (a)
-    # 左下右上
-    a=0
-    for i in range(1,5):
-        if [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    for i in range(1,5):
-        if [int(new_position[0])-25*i, int(new_position[1])-25*i] in color_of_list:
-            a+=1
-        else:
-            break
-    if a>= 4:
-        if (n-1)%2 == 1:
-            black_1=True
-            return (a)
-        if (n-1)%2 == 0:
-            white_1=True
-            return (a)
     print('asjgfaosiuhf',a)
 
 
