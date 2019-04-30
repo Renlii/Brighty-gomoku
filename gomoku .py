@@ -1,4 +1,4 @@
-''' AI & deep learning & rules '''
+''' UI & deep learning & rules '''
 
 
 
@@ -173,7 +173,7 @@ first_y = p2[py-1]
 second-y = p2[py+1]
 """
 #time
-#rule
+
 #text display
 # AI (deep learning? or simple AI branch
 
