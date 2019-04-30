@@ -121,12 +121,15 @@ all_white=[]
 time_black_win=0
 time_white_win=0
 
-
+## Main_Game
 time_to_quit = False
+
 while not time_to_quit:
     for new_event in pygame.event.get():
         if new_event.type == pygame.QUIT:
+            pygame.mixer.music.stop()
             time_to_quit = True
+            
         if new_event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
             #print(pos)
@@ -134,7 +137,10 @@ while not time_to_quit:
             #print(pos_position)
             intersection_position = [pos_position[i] * 25 for i in range(len(pos_position))]
             #print(intersection_position)
-            if intersection_position in empty_intersection:
+            
+            if intersection_position in empty_intersection: #new move
+                pygame.mixer.Sound.play(move_sound)
+                
                 if n%2 == 1:
                     n+=1
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
