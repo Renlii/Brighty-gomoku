@@ -12,7 +12,14 @@ Screen= width, height = 1440,960
 
 
 #init the game
+pygame.mixer.init(44100,-16,1,512)
 pygame.init()
+
+#insert sound and music
+move_sound = pygame.mixer.Sound("move.wav")
+pygame.mixer.music.load("Away.wav")
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1)
 
 #setup screen
 Screen = pygame.display.set_mode(Screen)
@@ -34,7 +41,7 @@ Screen.blit(boardImage, (0,0))
 
 
 
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font(None, 40)
 text_black = font.render('Black win!', True, GREEN, BLUE)
 text_white = font.render('White win!', True, GREEN, BLUE)
 textRect_black = text_black.get_rect()
@@ -130,7 +137,7 @@ while not time_to_quit:
             if intersection_position in empty_intersection:
                 if n%2 == 1:
                     n+=1
-                    pygame.draw.circle(Screen, BLACK, intersection_position, 10, 0)
+                    pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
                     all_black.append(intersection_position)
                     empty_intersection.remove(intersection_position)
                     who_wins(all_black,intersection_position)
@@ -144,7 +151,7 @@ while not time_to_quit:
                         time_to_quit = True
                 elif n%2 == 0:
                     n+=1
-                    pygame.draw.circle(Screen, WHITE, intersection_position,10, 0)
+                    pygame.draw.circle(Screen, WHITE, intersection_position,12, 0)
                     all_white.append(intersection_position)
                     empty_intersection.remove(intersection_position)
                     who_wins(all_white,intersection_position)
