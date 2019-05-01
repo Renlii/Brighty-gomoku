@@ -274,4 +274,3 @@ while True:
 
 pygame.quit()
 
-
