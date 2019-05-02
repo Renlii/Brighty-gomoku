@@ -238,7 +238,7 @@ while True:
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
                         reminder = font_GO.render(text_GO, True, BLACK)
 
-#"Ti                      
+                   
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
