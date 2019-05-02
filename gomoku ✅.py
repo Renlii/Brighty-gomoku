@@ -2,6 +2,7 @@
 import pygame 
 from pygame.locals import *
 import sys
+from smart_ways import SK
 
     
 #about screen
@@ -90,7 +91,7 @@ def who_wins(color_of_list, new_position):
         elif [int(new_position[0])-25*i, int(new_position[1])-25*i] in color_of_list:
             a+=1
         else:
-            print("value i:",i)
+            #print("value i:",i)
             break
     if a >= 4:
         if (n-1)%2 == 1:
@@ -99,7 +100,7 @@ def who_wins(color_of_list, new_position):
         if (n-1)%2 == 0:
             white_1=True
             return(a)
-    print(a)
+    #print(a)
 
 def RestartButton():
     pygame.draw.line(Screen, BLACK, [1300,300], [1300,350], 2)
@@ -223,7 +224,10 @@ while True:
                 
                 if n%2 == 1:
                     n+=1
+                    intersection_position=SK(all_black,all_white,empty_intersection)
+                    print(intersection_position)
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
+                    #print(intersection_position)
                     all_black.append(intersection_position)
                     empty_intersection.remove(intersection_position)
                     who_wins(all_black,intersection_position)
@@ -238,7 +242,7 @@ while True:
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
                         reminder = font_GO.render(text_GO, True, BLACK)
 
-                   
+#"Ti                      
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
@@ -273,4 +277,5 @@ while True:
     #print(x,y)
 
 pygame.quit()
+
 
