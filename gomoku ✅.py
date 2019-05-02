@@ -2,7 +2,7 @@
 import pygame 
 from pygame.locals import *
 import sys
-from smart_ways import SK
+from smart_ways import SK #################
 
     
 #about screen
@@ -224,7 +224,7 @@ while True:
                 
                 if n%2 == 1:
                     n+=1
-                    intersection_position=SK(all_black,all_white,empty_intersection)
+                    intersection_position=SK(all_black,all_white,empty_intersection) ###############
                     print(intersection_position)
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
                     #print(intersection_position)
@@ -240,15 +240,14 @@ while True:
                         time_black_win+=1
                         font_GO = pygame.font.SysFont(None, 80)
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
-                        reminder = font_GO.render(text_GO, True, BLACK)
-
-#"Ti                      
+                        reminder = font_GO.render(text_GO, True, BLACK)                  
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
                         Screen.blit(reminder, reminder.get_rect())
                         pygame.display.update()
                         game_over = True
+                        
                 elif n%2 == 0:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,12, 0)
@@ -262,8 +261,6 @@ while True:
                         font_GO = pygame.font.SysFont(None, 80)
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
                         reminder = font_GO.render(text_GO, True, BLACK)
-
-                        
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
