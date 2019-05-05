@@ -2,7 +2,7 @@
 import pygame 
 from pygame.locals import *
 import sys
-from smart_ways import SK #################
+from smart_ways import SK
 
     
 #about screen
@@ -224,30 +224,39 @@ while True:
                 
                 if n%2 == 1:
                     n+=1
-                    intersection_position=SK(all_black,all_white,empty_intersection) ###############
-                    print(intersection_position)
+                    #print(all_black,'black1')
+                    #print(empty_intersection,'001')
+                    intersection_position=SK(all_black,all_white,empty_intersection)
+                    #print(all_black,'black12')
+                    #print(intersection_position)
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
                     #print(intersection_position)
+                    #print(all_black,'black2')
                     all_black.append(intersection_position)
+                    #print(all_black,'black23')
                     empty_intersection.remove(intersection_position)
+                    #print(empty_intersection,'002')
+                    #print(intersection_position,'aoe')
                     who_wins(all_black,intersection_position)
+                    #print(all_black,'black')
                     #print('black_1 is',black_1)
                     #print("n is",n)
                     #print("a is",display_1)
                     if black_1 == True:
                         Screen.blit(text_black, textRect_black)
-                        pygame.display.update()
+                        #pygame.display.update()
                         time_black_win+=1
                         font_GO = pygame.font.SysFont(None, 80)
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
-                        reminder = font_GO.render(text_GO, True, BLACK)                  
+                        reminder = font_GO.render(text_GO, True, BLACK)
+
+#"Ti                      
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
                         Screen.blit(reminder, reminder.get_rect())
                         pygame.display.update()
                         game_over = True
-                        
                 elif n%2 == 0:
                     n+=1
                     pygame.draw.circle(Screen, WHITE, intersection_position,12, 0)
@@ -261,6 +270,8 @@ while True:
                         font_GO = pygame.font.SysFont(None, 80)
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
                         reminder = font_GO.render(text_GO, True, BLACK)
+
+                        
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
                         #pygame.time.delay(20000)
