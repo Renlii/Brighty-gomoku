@@ -47,11 +47,11 @@ def SK(all_black,all_white,all_other):
         #all_black.append([25*25,19*25])
         return[25*25,19*25]
 
-    if all_black!=[] and all_white==[]:
-        p=1 #Second hand White
-        all_white.append([all_white[0][0]-25,all_white[0][1]+25])
-        return[all_white[0][0]-25,all_white[0][1]+25]
-    
+#    if all_black!=[] and all_white==[]:
+#        p=1 #Second hand White
+#        all_white.append([all_black[0][0]-25,all_black[0][1]+25])
+#        return[all_black[0][0]-25,all_black[0][1]+25]
+  
 
     #Calculate value start!!!!
     val=0
@@ -64,147 +64,162 @@ def SK(all_black,all_white,all_other):
             if [x+25 ,y+25] in all_other:
                 val=1
                 value_list.append([[x+25,y+25],val])
-                print('右下 if',val)
+                print('右下 if',value_list)
+                print('Right D if',val)
             else:
                 val=1
                 for a in range(1,4):
                     if [x+25*a,y+25*a] in all_black:
                         val+=1
-                    else:
+                    elif [x+25*a,y+25*a] in all_other:
                         value_list.append([[x+25*a,y+25*a],val])
-                        print('右下',val)
+                        print('Right D',val)
+                        print('右下',value_list)
+                    elif [x+25*a,y+25*a] in all_white:
                         break
                 
             #左上↖️
             if [x-25,y-25] in all_other:
                 val=1
                 value_list.append([[x-25,y-25],val])
-                print('左上 if')
+                print('Left U if')
             else:
                 val=1
                 for a in range(1,4):
-                    if [[x-25*a,y-25*a], val] in all_black:
+                    if [x-25*a,y-25*a] in all_black:
                         val+=1
-                    else:
+                    elif [x-25*a,y-25*a] in all_other:
                         value_list.append([[x-25*a,y-25*a],val])
-                        print('左上')
+                        print('Left U')
+                    elif [x-25*a,y-25*a] in all_white:
                         break
                     
             #右上↗️        
             if [x+25,y-25] in all_other:
                 val=1
                 value_list.append([[x+25,y-25],val])
-                print('右上 if')
+                print('RU if')
             else:
                 val=1
                 for a in range(1,4):
                     if [x+25*a,y-25*a] in all_black:
                         val+=1
-                    else:
+                    elif [x+25*a,y-25*a] in all_other:
                         value_list.append([[x+25*a,y-25*a],val])
                         print('右上')
+                    elif [x+25*a,y-25*a] in all_white:
                         break
 
             #左下↙️
             if [x-25,y+25] in all_other:
-                if [x-25,y+25] in all_white:
-                    print('WDNMD')
                 val=1
                 value_list.append([[x-25,y+25],val])
+                print('左下 if')                
             else:
                 val=1
                 for a in range(1,4):
                     if [x-25*a,y+25*a] in all_black:
                         val+=1
-                    else:
+                    elif [x-25*a,y+25*a] in all_other:
                         value_list.append([[x-25*a,y+25*a],val])
                         print('左下')
+                    elif [x-25*a,y+25*a] in all_white:
                         break
 
             #右➡️
             if [x+25,y] in all_other:
                 val=1
                 value_list.append([[x+25,y],val])
+                print('右',value_list)
                 print('右 if')
             else:
                 val=1
                 for a in range(1,4):
                     if [x+25*a,y] in all_black:
                         val+=1
-                    else:
+                    elif [x+25*a,y] in all_other:
                         value_list.append([[x+25*a,y],val])
                         print('右')
+                    elif [x+25*a,y] in all_white:
                         break
 
             #左⬅️              
             if [i[0]-25,i[1]] in all_other:
                 val=1
                 value_list.append([[i[0]-25,i[1]],val])
+                print('左', value_list)
                 print('左 if')
             else:
                 val=1
                 for a in range(1,4):
                     if [i[0]-25*a,i[1]] in all_black:
                         val+=1
-                    else:
+                    elif [i[0]-25*a,i[1]] in all_other:
                         value_list.append([[i[0]-25*a,i[1]],val])
                         print('左')
+                    elif [i[0]-25*a,i[1]] in all_white:
                         break
 
             #下⬇️                   
             if [i[0],i[1]+25] in all_other:
-                if [i[0],i[1]+25] in all_white:
-                    print('WDNMDAAAAAA')
                 val=1
                 value_list.append([[i[0],i[1]+25],val])
+                print('下', value_list)
+                print('下 if')
             else:
                 val=1
                 for a in range(1,4):
                     if [i[0],i[1]+25*a] in all_black:
                         val+=1
-                    else:
+                    elif [i[0],i[1]+25*a] in all_other:
                         value_list.append([[i[0],i[1]+25*a],val])
                         print('下')
+                    elif [i[0],i[1]+25*a] in all_white:
                         break
                     
             #上⬆️
             if [i[0],i[1]-25] in all_other:
                 val=1
                 value_list.append([[i[0],i[1]-25],val])
+                print('上',value_list)
+                print('上 if')
             else:
                 val=1
                 for a in range(1,4):
                     if [i[0],i[1]-25*a] in all_black:
                         val+=1
-                    else:
+                    elif [i[0],i[1]-25*a] in all_other:
                         value_list.append([[i[0],i[1]-25*a],val])
                         print('上')
+                    elif [i[0],i[1]-25*a] in all_white:
                         break
 
 
 
     all_val=[]
-    lv=len(value_list)
-    value_list=value_list[:lv//2]
-    print(value_list)
+    print(value_list,'这是value_list')
 
     
     sum_value=[]
+    coord=[]
     for a in value_list:
-        for b in value_list:
-            if a[0] == b[0]:
-                sum_1 = int(a[1])+int(b[1])
-                sum_value.append([a[0],sum_1])
+        if a[0] not in coord:
+            coord.append(a[0])
+    print(coord)
+    for b in coord:
+        he=[]
+        for c in value_list:
+            if b == c[0]:
+                he.append(c[1])
+        print(he,'这是和')
+        sum_value.append([b,sum(he)])
 
 
 
-
-    
-
-    print(sum_value)
+    print(sum_value,'同样坐标下val相加')
     for i in sum_value:
         all_val.append(i[1])
-    print(all_val)
+    print(all_val,'所有的相加之后的val')
     numb=-1
     all_max=[]
     for v in all_val:
@@ -241,10 +256,21 @@ def SK(all_black,all_white,all_other):
 
 
 
+'''
+    sum_value=[]
+    coord=[]
+    for a in value_list:
+        if a[0] not in coord:
+            coord.append(a[0])
+    print(coord)
+    for b in coord:
+        he=[]
+        for c in value_list:
+            if b == c[0]:
+                he.append(c[1])
+        print(he,'这是和')
+        sum_value.append([b,sum(he)])
 
 
-
-
-
-
+'''
 
