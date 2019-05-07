@@ -64,42 +64,54 @@ def who_wins(color_of_list, new_position):
     global black_1
     global white_1
     global display_1
-    a=0
+    hori=0
+    vert=0
+    uldr=0
+    urdl=0
     black_1=False
     white_1=False
-    display_1=a
+    #display_1=a
     
     for i in range(1,5):
         # horizontal
         if [int(new_position[0])+25*i,int(new_position[1])] in color_of_list:
-            a+=1
+            hori+=1
         elif [int(new_position[0]) -25*i,int(new_position[1])] in color_of_list:
-            a+=1
+            hori+=1
+        else:
+            break
+    for i in range(1,5):
         # vertical
-        elif [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
-            a+=1
+        if [int(new_position[0]), int(new_position[1])+25*i] in color_of_list:
+            vert+=1
         elif [int(new_position[0]), int(new_position[1])-25*i] in color_of_list:
-            a+=1
+            vert+=1
+        else:
+            break
+    for i in range(1,5):
         # up left, down right
-        elif [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
-            a+=1
+        if [int(new_position[0])+25*i, int(new_position[1])-25*i] in color_of_list:
+            uldr+=1
         elif [int(new_position[0])-25*i, int(new_position[1])+25*i] in color_of_list:
-            a+=1
+            uldr+=1
+        else:
+            break
+    for i in range(1,5):
         # up right, down left
-        elif [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
-            a+=1
+        if [int(new_position[0])+25*i, int(new_position[1])+25*i] in color_of_list:
+            urdl+=1
         elif [int(new_position[0])-25*i, int(new_position[1])-25*i] in color_of_list:
-            a+=1
+            urdl+=1
         else:
             #print("value i:",i)
             break
-    if a >= 4:
+    if hori >= 4 or vert >= 4 or urdl >= 4 or uldr >= 4:
         if (n-1)%2 == 1:
             black_1=True
-            return(a)
+            return()
         if (n-1)%2 == 0:
             white_1=True
-            return(a)
+            return()
     #print(a)
 
 def RestartButton():
@@ -226,7 +238,7 @@ while True:
                     n+=1
                     #print(all_black,'black1')
                     #print(empty_intersection,'001')
-                    intersection_position=SK(all_black,all_white,empty_intersection)
+                    ###############intersection_position=SK(all_black,all_white,empty_intersection)
                     #print(all_black,'black12')
                     #print(intersection_position)
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
