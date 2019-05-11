@@ -1,4 +1,5 @@
-#import packages
+
+
 import pygame 
 from pygame.locals import *
 import sys
@@ -52,15 +53,16 @@ textRect_white.center = (1440 // 2, 960 // 2)
 
 
 game_over = False
-n=1 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
+n=1 # using to determinate who should play next
 all_black=[]
 all_white=[]
 time_black_win=0
 time_white_win=0
 
 def who_wins(color_of_list, new_position):
-    """color_of_list 代表了谁在下子（那个颜色） new_position 代表了新下的那个子的位置 我们需要对比新\
-    下的子的位置和所有原来在list中的位置 看看有没有五个连续的 如果有五个连续的则判定胜利"""
+    """color_of_list representing which side is playing; new_position represents that new position. We
+    need to compare the old positions and the new positions to check that if there are five lined rocks, if
+    there is, then that side win."""
     global black_1
     global white_1
     global display_1
@@ -159,7 +161,7 @@ def reset():
     
     pygame.init()
     empty_intersection = Empty_intersection()
-    n=1 #n 用于判断谁改下了 当n为单数时 后手下子  n为偶数时 先手下子
+    n=1 # using n to determinate who should play now; when is even is White, when n is odd is Black 
     all_black=[]
     all_white=[]
     time_black_win=0
@@ -172,7 +174,7 @@ def reset():
     pygame.mixer.music.play(-1)
     ScreenSetUp()
 
-#所有的空的交点
+#all the empty intersection
 def Empty_intersection():
     empty_int=[]
     for i in range(50):
@@ -221,11 +223,11 @@ while True:
         if new_event.type == pygame.MOUSEBUTTONUP:
             
             pos = pygame.mouse.get_pos()
-            #print(pos)
+
             pos_position = [round(x / 25) for x in pos]
-            #print(pos_position)
+
             intersection_position = [pos_position[i] * 25 for i in range(len(pos_position))]
-            #print(intersection_position)
+
             button_set = [[1300,300],[1300,325],[1300,350],[1325,300],[1325,325],[1325,350],[1350,300],[1350,325],[1350,350]]
 
             if intersection_position in button_set:
@@ -236,36 +238,23 @@ while True:
                 
                 if n%2 == 1:
                     n+=1
-                    #print(all_black,'black1')
-                    #print(empty_intersection,'001')
-                    ###############intersection_position=SK(all_black,all_white,empty_intersection)
-                    #print(all_black,'black12')
-                    #print(intersection_position)
+                    intersection_position=SK(all_black,all_white,empty_intersection)
                     pygame.draw.circle(Screen, BLACK, intersection_position, 12, 0)
-                    #print(intersection_position)
-                    #print(all_black,'black2')
                     all_black.append(intersection_position)
-                    #print(all_black,'black23')
                     empty_intersection.remove(intersection_position)
-                    #print(empty_intersection,'002')
-                    #print(intersection_position,'aoe')
                     who_wins(all_black,intersection_position)
-                    #print(all_black,'black')
-                    #print('black_1 is',black_1)
-                    #print("n is",n)
-                    #print("a is",display_1)
+                    
                     if black_1 == True:
                         Screen.blit(text_black, textRect_black)
-                        #pygame.display.update()
+                        
                         time_black_win+=1
                         font_GO = pygame.font.SysFont(None, 80)
                         text_GO = "GAME OVER within {0:02}:{1:02}!!".format(minutes, seconds)
                         reminder = font_GO.render(text_GO, True, BLACK)
 
-#"Ti                      
+                      
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
-                        #pygame.time.delay(20000)
                         Screen.blit(reminder, reminder.get_rect())
                         pygame.display.update()
                         game_over = True
@@ -286,7 +275,7 @@ while True:
                         
                         pygame.mixer.music.stop()
                         pygame.mixer.Sound.play(celebrate)
-                        #pygame.time.delay(20000)
+
                         Screen.blit(reminder, reminder.get_rect())
                         pygame.display.update()
                         game_over = True
@@ -294,7 +283,7 @@ while True:
                 pygame.display.update()
               
     x, y = pygame.mouse.get_pos()
-    #print(x,y)
+    
 
 pygame.quit()
 
